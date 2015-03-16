@@ -1,6 +1,12 @@
 {
   "testSuiteList": {
     "testgenre": "core",
+    "testDictionary" : [
+      {
+        "home_login_link": "//a[contains(.,'Login')]",
+        "home_signup": "//a[contains(.,'Sign Up')]"
+      }
+    ],
     "testSuite": [
       {
         "testID": "00",

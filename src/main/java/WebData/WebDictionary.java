@@ -9,7 +9,10 @@ public class WebDictionary {
     public static Map<String, String> theDictionary = new HashMap<String, String>();
 
     public static void loadDictionary () {
+
         theDictionary = mainDictionary();
+
+
     }
 
     public static Map <String, String> mainDictionary () {
@@ -54,7 +57,7 @@ public class WebDictionary {
             loadDictionary();
         }
         else {
-            //empty
+            //empty already initialized
         }
 
         if (theDictionary.size() > 0 && myString.length() > 0) {

@@ -1,6 +1,6 @@
 package WebAutomation;
 
-public class PathData {
+public class PathDataClass {
     public String command;
     public String path;
 }

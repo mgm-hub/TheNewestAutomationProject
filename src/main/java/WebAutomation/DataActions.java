@@ -19,7 +19,7 @@ public class DataActions {
         String baseURL = (String) myObject.get(DICTIONARY_KEY_URL);
         driver.get(baseURL);
         //path array builder
-        PathData[] myPathArray = myDataBuilder.pathDataReturn(myObject);
+        PathDataClass[] myPathArray = myDataBuilder.pathDataReturn(myObject);
         //run test
         mainTestRunAction(driver, myPathArray);
     }
@@ -29,7 +29,7 @@ public class DataActions {
     //
 
     //4.1
-    public static int pathChoiceAction (PathData path, int myCount, WebDriver driver, PathData[] myPathArray) {
+    public static int pathChoiceAction (PathDataClass path, int myCount, WebDriver driver, PathDataClass[] myPathArray) {
         if (path.command.equals("click")){ //case 1
             myWebActions.findAndClickElement(path.path, driver);
         }
@@ -37,7 +37,7 @@ public class DataActions {
             myWebActions.webWait(path.path);
         }
         else if (path.command.equals("writePRE") && myCount >= 1){ //case 3
-            PathData myWritePath = myPathArray[myCount-1];
+            PathDataClass myWritePath = myPathArray[myCount-1];
             if (myWritePath != null) {
                 WebElement myElement = myWebActions.getElement(myWritePath.path, driver);
                 if (myElement != null){
@@ -72,7 +72,7 @@ public class DataActions {
             myWebActions.clearText(path.path, driver);
         }
         else if (path.command.equals("compareTextPRE") && myCount >= 1) { //case 10
-            PathData myWritePath = myPathArray[myCount-1];
+            PathDataClass myWritePath = myPathArray[myCount-1];
             if (myWritePath != null) {
                 WebElement myElement = myWebActions.getElement(myWritePath.path, driver);
                 if (myElement != null){
@@ -94,11 +94,11 @@ public class DataActions {
     }
 
     //4.0 automation action
-    public static void mainTestRunAction(WebDriver driver, PathData[] myPathArray) {
+    public static void mainTestRunAction(WebDriver driver, PathDataClass[] myPathArray) {
         int myLength = myPathArray.length;
         if (myLength > 0 && driver != null) {
             int myCount = 0;
-            for (PathData path : myPathArray) {
+            for (PathDataClass path : myPathArray) {
                 myCount = pathChoiceAction(path, myCount, driver, myPathArray);
             }
         }

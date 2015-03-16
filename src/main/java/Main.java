@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 public class Main  {
 
     static TestEventClass myTestEventClass = new TestEventClass();
+    static RunActions myRunActions  = new RunActions();
 
     public static void main(String[] args) {
         System.out.print("Main Run Start\n");
@@ -17,78 +18,35 @@ public class Main  {
         //myErrorEventClass.myTestString = "new";
         //System.out.print(myErrorEventClass.myTestString);
 
-        //runAllCases();
-
-        int[] myCaseArray = {0};
-        String mySuite = "Core";
-
-        runSelectCases(myCaseArray,mySuite);
-
-
+        //runSpecific();
+        TESTPath();
 
         System.out.print("\nMain Run Finish\n");
+    }
+
+    public static void runSpecific () {
+        int[] myCaseArray = {0};
+        String mySuite = "Core";
+        myRunActions.runSelectCases(myCaseArray,mySuite);
+    }
+
+    public static void runAll () {
+        String mySuite = "Core";
+        myRunActions.runAllCases(mySuite);
     }
 
     //
     ////
     //
 
-    public static void runSelectCases (int[] myTestArray,String mySuiteName) {
+    public static void TESTPath() {
         WebActions myWebActions = new WebActions();
         DataActions myDataActions = new DataActions();
         DataBuilder myDataBuilder = new DataBuilder();
-
-        WebDriver driver = myWebActions.getWebDriver();
-        TestListData myTestGroup = myDataBuilder.mapForJSONObject(myDataBuilder.myUSRDirectory(mySuiteName));
-
-        if (myTestGroup != null) {
-            int myCompleteTestCaseCount = myTestGroup.testCases.length;
-            int myTestArrayCount = myTestArray.length;
-
-            for (int i = 0; i < myTestArrayCount; i++) {
-                int myTestNumber;
-                JSONObject myTestObject;
-                myTestNumber = myTestArray[i];
-                if (myTestNumber < myCompleteTestCaseCount) {
-                    myTestObject = myTestGroup.testCases[myTestNumber];
-                    myDataActions.testSelectedAction(myTestObject, driver);
-                }
-                else {
-                    String errorMessage = "Error - Main (runSelectCases) - test number outside of bounds";
-                    System.out.print(errorMessage);
-                }
-            }
-        }
-        else {
-            String errorMessage = "Error - Main (runSelectCases) - test group is empty";
-            System.out.print(errorMessage);
-        }
+        TestListDataClass myTestGroup = myDataBuilder.mapForJSONObject(myDataBuilder.myUSRDirectory("Core"));
     }
 
-    public static void runAllCases(String mySuite) {
-        WebActions myWebActions = new WebActions();
-        DataActions myDataActions = new DataActions();
-        DataBuilder myDataBuilder = new DataBuilder();
 
-        WebDriver driver = myWebActions.getWebDriver();
-        TestListData myTestGroup = myDataBuilder.mapForJSONObject(myDataBuilder.myUSRDirectory(mySuite));
-
-        if (myTestGroup != null) {
-            int myCompleteTestCaseCount = myTestGroup.testCases.length;
-
-            for (int i = 0; i < myCompleteTestCaseCount; i++) {
-                int myTestNumber;
-                JSONObject myTestObject;
-                myTestNumber = i;
-                myTestObject = myTestGroup.testCases[myTestNumber];
-                myDataActions.testSelectedAction(myTestObject, driver);
-            }
-        }
-        else {
-            String errorMessage = "Error - Main (runAllCases) - test group is empty";
-            System.out.print(errorMessage);
-        }
-    }
 
     //
     ////
@@ -119,7 +77,7 @@ public class Main  {
         DataBuilder myDataBuilder = new DataBuilder();
 
         WebDriver driver = myWebActions.getWebDriver();
-        TestListData myTestGroup = myDataBuilder.mapForJSONObject(myDataBuilder.myUSRDirectory("Core"));
+        TestListDataClass myTestGroup = myDataBuilder.mapForJSONObject(myDataBuilder.myUSRDirectory("Core"));
 
         int myTestNumber;
         JSONObject myTestObject;
