@@ -1,5 +1,6 @@
 
 import TestReporter.TestEventClass;
+import TestReporter.Timeclass;
 import WebAutomation.*;
 import org.openqa.selenium.WebDriver;
 import org.json.simple.JSONObject;
@@ -10,17 +11,25 @@ public class Main  {
     static RunActions myRunActions  = new RunActions();
 
     public static void main(String[] args) {
-        System.out.print("Main Run Start\n");
+        System.out.print("\nMain Run Start");
 
         myTestEventClass = myTestEventClass.loadTestEventClass();
-
+        myTestEventClass.startTest();
+        myTestEventClass.endTest();
         //myErrorEventClass.myTestString = "new";
         //System.out.print(myErrorEventClass.myTestString);
 
-        //runSpecific();
-        runAll();
 
-        System.out.print("\nMain Run Finish\n");
+
+
+
+        //runSpecific();
+        //runAll();
+
+
+
+
+        System.out.print("\nMain Run Finish");
     }
 
     public static void runSpecific () {

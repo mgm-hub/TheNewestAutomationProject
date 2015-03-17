@@ -6,7 +6,7 @@
         "cloud_login_link": "//i[@class='fa fa-user']",
         "cloud_user_name": "//input[@id='SignInUserName']",
         "cloud_login_button": "//input[@value='Login']",
-        "main_login_user_password": "//input[@id='SignInPassword']"
+        "cloud_login_user_password": "//input[@id='SignInPassword']"
       }
     ],
     "testSuite": [
@@ -20,7 +20,7 @@
             "1": ["click", "cloud_user_name"],
             "2": ["writePRE","milkaa"],
             "3": ["wait","1000"],
-            "4": ["click","main_login_user_password"],
+            "4": ["click","cloud_login_user_password"],
             "5": ["writePRE","tomato"],
             "6": ["finished","test 01"]
           }
@@ -36,7 +36,7 @@
             "1": ["click", "cloud_user_name"],
             "2": ["writePRE","milkaa"],
             "3": ["wait","1000"],
-            "4": ["click","main_login_user_password"],
+            "4": ["click","cloud_login_user_password"],
             "5": ["writePRE","tomato"],
             "6": ["finished","test 01"]
           }

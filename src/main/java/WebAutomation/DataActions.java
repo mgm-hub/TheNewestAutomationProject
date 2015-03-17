@@ -40,6 +40,9 @@ public class DataActions {
         if (myLength > 0 && driver != null) {
             int myCount = 0;
             for (PathDataClass path : myPathArray) {
+// ACTION - NUMBER HERE
+
+                System.out.print("\n"+myCount);
                 myCount = pathChoiceAction(path, myCount, driver, myPathArray);
             }
         }
@@ -76,8 +79,8 @@ public class DataActions {
             myWebActions.elementIsVisible(path.path,driver);
         }
         else if (path.command.equals("finished")) { //case 5
-//FIX
-            System.out.print(path.path + " - Complete");
+//FIX COMPLETE
+            System.out.print("\n"+path.path + " - Complete");
         }
         else if (path.command.equals("closebrowser")) { //case 6
             System.out.print("\nBrowser Closed");

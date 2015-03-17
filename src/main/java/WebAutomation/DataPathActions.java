@@ -42,7 +42,8 @@ public class DataPathActions {
             return pathDataBuilder(myCommand, myPath);
         }
         else {
-            System.out.print("Error JSONPathArray is null for Mapper");
+            String errorMessage = "\nError - DataPathActions (pathDataMapper) - JSONPathArray is null for Map";
+            System.out.print(errorMessage);
             return null;
         }
     }
@@ -56,7 +57,8 @@ public class DataPathActions {
             return myPathData;
         }
         else {
-            System.out.print("\nError - Empty path Data for Builder");
+            String errorMessage = "\nError - DataPathActions (pathDataBuilder) - Empty path Data for Builder";
+            System.out.print(errorMessage);
             return null;
         }
     }

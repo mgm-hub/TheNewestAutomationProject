@@ -29,13 +29,13 @@ public class RunActions {
                     myDataActions.testSelectedAction(myTestObject, driver);
                 }
                 else {
-                    String errorMessage = "Error - Main (runSelectCases) - test number outside of bounds";
+                    String errorMessage = "\nError - Main (runSelectCases) - test number outside of bounds";
                     System.out.print(errorMessage);
                 }
             }
         }
         else {
-            String errorMessage = "Error - Main (runSelectCases) - test group is empty";
+            String errorMessage = "\nError - Main (runSelectCases) - test group is empty";
             System.out.print(errorMessage);
         }
     }
@@ -59,7 +59,7 @@ public class RunActions {
             }
         }
         else {
-            String errorMessage = "Error - Main (runAllCases) - test group is empty";
+            String errorMessage = "\nError - Main (runAllCases) - test group is empty";
             System.out.print(errorMessage);
         }
     }

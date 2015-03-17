@@ -30,14 +30,14 @@
           {
             "0": ["click","home_login_link"],
             "1": ["wait","1000"],
-            "2": ["click", "main_login_user_email"],
+            "2": ["click", "main_login_user_emailsss"],
             "3": ["writePRE", "hello@example.net"],
             "4": ["click", "main_login_user_password"],
             "5": ["writePRE", "123456"],
             "6": ["click", "main_login_signin_button"],
             "7": ["wait","1000"],
             "8": ["find","main_login_alert"],
-            "9": ["compareTextPRE","Whoops! Your email and password don't match."],
+            "9": ["compareTextPRE","Whoops! Your email and password don't match!!!!!."],
             "10": ["wait","1000"],
             "11": ["finished","test 01"]
           }
