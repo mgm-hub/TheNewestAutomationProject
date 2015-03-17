@@ -4,9 +4,13 @@ public class TestEventClass {
     
     static String myTestPath;
     static String myTestID;
-    static int mySTartTime;
-    static int myEndTime;
+    static float myStartTime = 0;
+    static float myEndTime = 0;
+    static float myCompletionTime = 0;
     static Timeclass myTimeclass = new Timeclass();
+
+    public static String myCurrentCaseNumber = "";
+    public static String myCurrentError = "";
 
     public static TestEventClass loadTestEventClass () {
         TestEventClass myErrorEventClass = new TestEventClass();
@@ -21,6 +25,9 @@ public class TestEventClass {
 
     public static void endTest() {
         myTimeclass.setEndTime();
+        myStartTime = myTimeclass.startTime;
+        myEndTime = myTimeclass.endTime;
+        myCompletionTime = myTimeclass.completionTime;
         myTimeclass.printTime();
     }
 

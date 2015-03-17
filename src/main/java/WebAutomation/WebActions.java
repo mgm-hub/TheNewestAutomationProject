@@ -21,7 +21,9 @@ public class WebActions {
             myElement.sendKeys(myText);
         }
         else {
-            System.out.print("\nError - Web (findAndWriteForElement) - element is hidden : " + myPath);
+            String errorMessage = ("\nError - Web (findAndWriteForElement) - element is hidden : " + myPath);
+            System.out.print(errorMessage);
+
         }
     }
 
@@ -31,7 +33,9 @@ public class WebActions {
             myElement.clear();
         }
         else {
-            System.out.print("\nError - Web (clearText) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+            String errorMessage = ("\nError - Web (clearText) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+            System.out.print(errorMessage);
+
         }
     }
 
@@ -45,7 +49,9 @@ public class WebActions {
             clickElement(myElement, theWebDictionary.xpathReturn(myPath), driver);
         }
         else {
-            System.out.print("\nError - Web (findAndClickElement) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+            String errorMessage = ("\nError - Web (findAndClickElement) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+            System.out.print(errorMessage);
+
             //System.out.print("\nRan JS");
         }
     }
@@ -63,7 +69,9 @@ public class WebActions {
             action = null;
         }
         else {
-            System.out.print("\nError - Web (hoverOverElement) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+            String errorMessage = ("\nError - Web (hoverOverElement) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+            System.out.print(errorMessage);
+
         }
     }
 
@@ -75,12 +83,16 @@ public class WebActions {
                 return true;
             } else {
 //FIX
-                System.out.print("\nError - Web (elementIsVisible) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+                String errorMessage = ("\nError - Web (elementIsVisible) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+                System.out.print(errorMessage);
+
                 return false;
             }
         } else {
 //FIX
-            System.out.print("\nError - Web (elementIsVisible) - element doesn't exist  : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+            String errorMessage = ("\nError - Web (elementIsVisible) - element doesn't exist  : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+            System.out.print(errorMessage);
+
             return false;
         }
     }
@@ -91,7 +103,9 @@ public class WebActions {
         }
         else if (myElement.isDisplayed() == false) {
 //FIX
-            System.out.print("\nError - Web (clickElement) - Element is not displayed Error : " + myPath);
+            String errorMessage = ("\nError - Web (clickElement) - Element is not displayed Error : " + myPath);
+            System.out.print(errorMessage);
+
             //JavascriptExecutor executor = (JavascriptExecutor)driver;
             //(JavascriptExecutor(driver)).executeScript("document.getElementsByClassName('post-tag')[0].click();");
             //document.getElementsByClassName('post-tag')[0].click();
@@ -117,12 +131,16 @@ public class WebActions {
             }
             else {
 //FIX
-                System.out.print("\nError - Web (elementTextCompare) - Text Not Equal : " + myText +  " -- -- " + myCheckText);
+                String errorMessage = ("\nError - Web (elementTextCompare) - Text Not Equal : " + myText +  " -- -- " + myCheckText);
+                System.out.print(errorMessage);
+
             }
         }
         else {
 //FIX
-            System.out.print("\nError - Web (elementTextCompare) - No get text : " + myText +  " or no compare text : " + myCheckText);
+            String errorMessage = ("\nError - Web (elementTextCompare) - No get text : " + myText +  " or no compare text : " + myCheckText);
+            System.out.print(errorMessage);
+
         }
     }
 
@@ -137,13 +155,17 @@ public class WebActions {
                 return myText;
             } else {
 //FIX
-                System.out.print("\nError - Web (elementTextReturn) - No Text : " + myPath);
+                String errorMessage = ("\nError - Web (elementTextReturn) - No Text : " + myPath);
+                System.out.print(errorMessage);
+
                 return "";
             }
         }
         else {
 //FIX
-            System.out.print("\nError - Web (elementTextReturn) - Element is not displayed Error : " + myPath);
+            String errorMessage = ("\nError - Web (elementTextReturn) - Element is not displayed Error : " + myPath);
+            System.out.print(errorMessage);
+
             return "";
         }
     }
@@ -162,7 +184,9 @@ public class WebActions {
                 return null;
             }
         } catch (Exception e) {
-            System.out.print("\nError - Web (getElement) - no element : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+            String errorMessage = ("\nError - Web (getElement) - no element : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
+            System.out.print(errorMessage);
+
             return null;
         }
     }
@@ -178,7 +202,9 @@ public class WebActions {
         }
         else {
 //FIX
-            System.out.print("\nError - Web (checkURL) - URL does not match");
+            String errorMessage = ("\nError - Web (checkURL) - URL does not match");
+            System.out.print(errorMessage);
+
         }
     }
 
@@ -193,11 +219,15 @@ public class WebActions {
                 Thread.sleep(myInt);
             }
             else {
-                System.out.print("\nError - Web (webWait) - thread pause length)");
+                String errorMessage = ("\nError - Web (webWait) - thread pause length)");
+                System.out.print(errorMessage);
+
             }
         }
         catch (Exception error) {
-            System.out.print("\nError - Web (webWait) - could not pause thread)");
+            String errorMessage = ("\nError - Web (webWait) - could not pause thread)");
+            System.out.print(errorMessage);
+
 
         }
     }

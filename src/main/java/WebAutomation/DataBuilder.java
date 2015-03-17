@@ -1,5 +1,6 @@
 package WebAutomation;
 
+import TestReporter.TestEventClass;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -19,6 +20,7 @@ public class DataBuilder {
     public static String theSuiteFileName;
     public static TestListDataClass theTestListDataClass;
     public static String theUSRDirectory;
+    public static TestEventClass myTestEventClass = new TestEventClass();
 
     //init
     public DataBuilder(String mySuiteGroupName, String mySuiteFileName) {

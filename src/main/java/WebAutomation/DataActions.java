@@ -40,9 +40,11 @@ public class DataActions {
         if (myLength > 0 && driver != null) {
             int myCount = 0;
             for (PathDataClass path : myPathArray) {
-// ACTION - NUMBER HERE
 
-                System.out.print("\n"+myCount);
+                // ACTION - NUMBER HERE
+                theDataBuilder.myTestEventClass.myCurrentCaseNumber = Integer.toString(myCount);
+                System.out.print("\nCase number : "+theDataBuilder.myTestEventClass.myCurrentCaseNumber);
+
                 myCount = pathChoiceAction(path, myCount, driver, myPathArray);
             }
         }
@@ -68,11 +70,13 @@ public class DataActions {
                     myWebActions.findAndWriteForElement(path.path, myElement, myWritePath.path);
                 }
                 else {
-                    System.out.print("\nError - Action (pathChoiceAction) - element for write paths");
+                    String errorMessage = "\nError - Action (pathChoiceAction) - element for write paths is null";
+                    System.out.print(errorMessage);
                 }
             }
             else {
-                System.out.print("\nError - Action (pathChoiceAction) - write path");
+                String errorMessage = "\nError - Action (pathChoiceAction) - write path is null";
+                System.out.print(errorMessage);
             }
         }
         else if (path.command.equals("find")) { //case 4
@@ -80,10 +84,13 @@ public class DataActions {
         }
         else if (path.command.equals("finished")) { //case 5
 //FIX COMPLETE
-            System.out.print("\n"+path.path + " - Complete");
+            String completionMessage = "\n"+path.path + " - Complete";
+            System.out.print(completionMessage);
         }
         else if (path.command.equals("closebrowser")) { //case 6
-            System.out.print("\nBrowser Closed");
+
+            String completionMessage = "\nBrowser Closed";
+            System.out.print(completionMessage);
             myWebActions.webClose(driver);
         }
         else if (path.command.equals("hover")) { //case 7
@@ -103,15 +110,18 @@ public class DataActions {
                     myWebActions.elementTextCompare(myElement, myWritePath.path, path.path );
                 }
                 else {
-                    System.out.print("\nError - Action (pathChoiceAction) - element for write paths");
+                    String errorMessage = "\nError - Action (pathChoiceAction) - element for write paths";
+                    System.out.print(errorMessage);
                 }
             }
             else {
-                System.out.print("\nError - Action (pathChoiceAction) - write path is null");
+                String errorMessage = ("\nError - Action (pathChoiceAction) - write path is null");
+                System.out.print(errorMessage);
             }
         }
         else {
-            System.out.print("\nError - command case not covered");
+            String errorMessage = ("\nError - command case not covered");
+            System.out.print(errorMessage);
         }
         myCount++; //Count HERE
         return  myCount;

@@ -30,7 +30,7 @@
           {
             "0": ["click","home_login_link"],
             "1": ["wait","1000"],
-            "2": ["click", "main_login_user_emailsss"],
+            "2": ["click", "main_login_user_email"],
             "3": ["writePRE", "hello@example.net"],
             "4": ["click", "main_login_user_password"],
             "5": ["writePRE", "123456"],

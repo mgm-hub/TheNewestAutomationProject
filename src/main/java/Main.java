@@ -7,16 +7,12 @@ import org.json.simple.JSONObject;
 
 public class Main  {
 
-    static TestEventClass myTestEventClass = new TestEventClass();
     static RunActions myRunActions  = new RunActions();
 
     public static void main(String[] args) {
         System.out.print("\nMain Run Start");
 
-        myTestEventClass = myTestEventClass.loadTestEventClass();
-        myTestEventClass.startTest();
-        myTestEventClass.endTest();
-        //myErrorEventClass.myTestString = "new";
+
         //System.out.print(myErrorEventClass.myTestString);
 
 
@@ -24,7 +20,7 @@ public class Main  {
 
 
         //runSpecific();
-        //runAll();
+        runAll();
 
 
 
