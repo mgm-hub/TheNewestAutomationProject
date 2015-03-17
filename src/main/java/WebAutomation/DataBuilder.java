@@ -16,6 +16,22 @@ public class DataBuilder {
     final static String DICTIONARY_KEY_PATHLIST = "pathList";
     final static String DICTIONARY_KEY_DICTIONARY = "testDictionary";
 
+    public static  Map<String, String>  theJSONDictionaryData;
+    public static String theSuiteGroupName;
+    public static String theSuiteFileName;
+    public static TestListDataClass theTestListDataClass;
+    public static String theUSRDirectory;
+
+    //init
+    public DataBuilder(String mySuiteGroupName, String mySuiteFileName) {
+
+        theSuiteGroupName = mySuiteGroupName;
+        theSuiteFileName = mySuiteFileName;
+        System.out.print("\nInit - DataBuilder -- "+theSuiteGroupName + " : " +theSuiteFileName);
+        theUSRDirectory = myUSRDirectory(mySuiteGroupName,mySuiteFileName);
+        theTestListDataClass = mapForJSONObject(theUSRDirectory);
+
+    }
 
     //3.2
     public static PathDataClass[] pathDataReturn (JSONObject myObject) {
@@ -59,7 +75,7 @@ public class DataBuilder {
             return myPathData;
         }
         else {
-            System.out.print("Error - Empty path Data for Builder");
+            System.out.print("\nError - Empty path Data for Builder");
             return null;
         }
     }
@@ -116,41 +132,19 @@ public class DataBuilder {
             myTestSuiteList = (JSONArray) myTestSuiteFile.get(DICTIONARY_KEY_02);
 
             //load in dictionary!!!!
-
             JSONArray myTestSuiteDictionary = (JSONArray) myTestSuiteFile.get(DICTIONARY_KEY_DICTIONARY);
-
-           if (myTestSuiteDictionary.size() > 0) {
-                JSONObject myObject = (JSONObject) myTestSuiteDictionary.get(0);
-                System.out.print("\n**00**");
-                System.out.print("\n"+myObject + "\n");
-                System.out.print("\n**11**");
-
-               String myNewArray = (String) myObject.get("home_signup");
-
-               System.out.print("\n**22** : " + myNewArray);
-
-                /*
-               String myCommand = (String) myObject.get(0);
-               String myPath = (String) myObject.get(1);
-
-               System.out.print("\n**22** : "+myCommand);
-               System.out.print("\n**33** : "+myPath);
-                */
-
-
+           if (myTestSuiteDictionary.size() > 0) { // Build Dictionary
+               JSONObject myObject = (JSONObject) myTestSuiteDictionary.get(0);
+               theJSONDictionaryData = newDictionaryBuilder(myObject);
            }
-
-
-
-
         } else {
-            System.out.print("Error - testSuiteList dictionary error");
+            System.out.print("\nError - testSuiteList dictionary error");
             myTestSuiteList = null;
         }
 
         int myNumberOfTests = myTestSuiteList.size();
 
-        // iterate through all cases
+        // iterate through all test cases
         List<JSONObject> testCases = new ArrayList<JSONObject>();
         for (int i = 0; i < myNumberOfTests; i++) {
             JSONObject myTestSuite = singleTestObject(myTestSuiteList,i);
@@ -167,14 +161,32 @@ public class DataBuilder {
         return myTestListData;
     }
 
-    //1.2 test iteration
+    //1.2
+    public static  Map<String, String>  newDictionaryBuilder (JSONObject myObject ){
+        Collection myCollectionValues = myObject.values();
+        Collection myCollectionKeys = myObject.keySet();
+
+        Object[] mValueyArray = myCollectionValues.toArray();
+        Object[] myKeyArray = myCollectionKeys.toArray();
+
+        Map<String, String> myDictionary = new HashMap<String, String>();
+
+        for(int i = 0; i< myKeyArray.length; i++) {
+            String myKey = (String) myKeyArray[i];
+            String myValue = (String) mValueyArray[i];
+            myDictionary.put(myKey,myValue);
+        }
+        return myDictionary;
+    }
+
+    //1.3 test iteration
     public static JSONObject singleTestObject (JSONArray myTestSuiteList, int myTestNumber) {
         JSONObject myTestSuite;
         if (myTestSuiteList != null) {
             myTestSuite = (JSONObject) myTestSuiteList.get(myTestNumber);
             return myTestSuite;
         } else {
-            System.out.print(" Error - test number error");
+            System.out.print("\nError - test number error");
             return null;
         }
     }
@@ -183,15 +195,16 @@ public class DataBuilder {
     ////
     //
 
-    public static String myUSRDirectory (String mySuiteName) {
+    //0.0
+    public static String myUSRDirectory (String mySuiteName, String myFileName) {
         String USR_DIRECTORY = System.getProperty("user.dir");
         String OS_NAME = System.getProperty("os.name");
         String myPathAdd;
         if (OS_NAME.equals("Mac OS X")){
-            myPathAdd = "/src/main/java/WebData/"+mySuiteName+"/"+mySuiteName+".json";
+            myPathAdd = "/src/main/java/WebData/"+mySuiteName+"/"+myFileName+".json";
         }
         else{
-            myPathAdd = "\\src\\main\\java\\WebData\\"+mySuiteName+"\\"+mySuiteName+".json";
+            myPathAdd = "\\src\\main\\java\\WebData\\"+mySuiteName+"\\"+myFileName+".json";
         }
         String fullPath = USR_DIRECTORY + myPathAdd;
         return fullPath;

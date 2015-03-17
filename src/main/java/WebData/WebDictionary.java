@@ -3,18 +3,40 @@ package WebData;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class WebDictionary {
 
     public static Map<String, String> theDictionary = new HashMap<String, String>();
 
-    public static void loadDictionary () {
-
-        theDictionary = mainDictionary();
-
-
+    public WebDictionary(Map<String, String> myDictionary) {
+        theDictionary = myDictionary;
     }
 
+    public static String xpathReturn (String myString) {
+        if (theDictionary.size() > 0 && myString.length() > 0) {
+            String myValue = "";
+            if (theDictionary.containsKey(myString)) {
+                myValue = theDictionary.get(myString);
+                if (myValue.length() >0) {
+                    return myValue;
+                }
+                else {
+                    System.out.print("\nError - Dictionary (xpathReturn) - No string for key : "+ myString);
+                    return null;
+                }
+            }
+            else {
+                System.out.print("\nError - Dictionary (xpathReturn) - No key : " + myString);
+                return null;
+            }
+        }
+        else {
+            System.out.print("\nError - Dictionary (xpathReturn) - null search ");
+            return null;
+        }
+    }
+}
+
+/*
     public static Map <String, String> mainDictionary () {
         Map<String, String> dictionary = new HashMap<String, String>();
         dictionary.put("home_login_link", "//a[contains(.,'Login')]");
@@ -49,37 +71,4 @@ public class WebDictionary {
         dictionary.put("empty", "");
         return dictionary;
     }
-
-    public static String xpathReturn (String myString) {
-        //lazy init
-        if (theDictionary.size() <= 0){//first call to this method
-            System.out.print("\nDictionary Loaded!");
-            loadDictionary();
-        }
-        else {
-            //empty already initialized
-        }
-
-        if (theDictionary.size() > 0 && myString.length() > 0) {
-            String myValue = "";
-            if (theDictionary.containsKey(myString)) {
-                myValue = theDictionary.get(myString);
-                if (myValue.length() >0) {
-                    return myValue;
-                }
-                else {
-                    System.out.print("\nError - Dictionary (xpathReturn) - No string for key : "+ myString);
-                    return null;
-                }
-            }
-            else {
-                System.out.print("\nError - Dictionary (xpathReturn) - No key : " + myString);
-                return null;
-            }
-        }
-        else {
-            System.out.print("\nError - Dictionary (xpathReturn) - null search ");
-            return null;
-        }
-    }
-}
+*/

@@ -8,7 +8,14 @@ import org.openqa.selenium.interactions.Actions;
 import java.util.concurrent.TimeUnit;
 
 public class WebActions {
-    static WebDictionary myWebDictionary = new WebDictionary();
+    static WebDictionary theWebDictionary;
+    static DataBuilder theDataBuilder;
+
+    public WebActions(DataBuilder myDataBuilder) {
+        System.out.print("\nInit - Web Actions");
+        theDataBuilder = myDataBuilder;
+        theWebDictionary = new WebDictionary(myDataBuilder.theJSONDictionaryData);
+    }
 
     public static void findAndWriteForElement(String myText, WebElement myElement, String myPath) {
         if (myElement != null && myElement.isDisplayed()) {
@@ -25,7 +32,7 @@ public class WebActions {
             myElement.clear();
         }
         else {
-            System.out.print("\nError - Web (clearText) - element is hidden : " + myPath + " : " + myWebDictionary.xpathReturn(myPath));
+            System.out.print("\nError - Web (clearText) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
         }
     }
 
@@ -36,10 +43,10 @@ public class WebActions {
        // executor.executeScript("arguments[0].click();", myElement);
 
         if (myElement != null && myElement.isDisplayed()) {
-            clickElement(myElement, myWebDictionary.xpathReturn(myPath), driver);
+            clickElement(myElement, theWebDictionary.xpathReturn(myPath), driver);
         }
         else {
-            System.out.print("\nError - Web (findAndClickElement) - element is hidden : " + myPath + " : " + myWebDictionary.xpathReturn(myPath));
+            System.out.print("\nError - Web (findAndClickElement) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
             //System.out.print("\nRan JS");
         }
     }
@@ -57,7 +64,7 @@ public class WebActions {
             action = null;
         }
         else {
-            System.out.print("\nError - Web (hoverOverElement) - element is hidden : " + myPath + " : " + myWebDictionary.xpathReturn(myPath));
+            System.out.print("\nError - Web (hoverOverElement) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
         }
     }
 
@@ -69,12 +76,12 @@ public class WebActions {
                 return true;
             } else {
 //FIX
-                System.out.print("\nError - Web (elementIsVisible) - element is hidden : " + myPath + " : " + myWebDictionary.xpathReturn(myPath));
+                System.out.print("\nError - Web (elementIsVisible) - element is hidden : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
                 return false;
             }
         } else {
 //FIX
-            System.out.print("\nError - Web (elementIsVisible) - element doesn't exist  : " + myPath + " : " + myWebDictionary.xpathReturn(myPath));
+            System.out.print("\nError - Web (elementIsVisible) - element doesn't exist  : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
             return false;
         }
     }
@@ -148,7 +155,7 @@ public class WebActions {
 
     public static WebElement getElement(String myPath, WebDriver driver) {
         try {
-        WebElement myElement = driver.findElement(By.xpath(myWebDictionary.xpathReturn(myPath)));
+        WebElement myElement = driver.findElement(By.xpath(theWebDictionary.xpathReturn(myPath)));
             if (myElement != null) {
                 return myElement;
             }
@@ -156,7 +163,7 @@ public class WebActions {
                 return null;
             }
         } catch (Exception e) {
-            System.out.print("\nError - Web (getElement) - no element : " + myPath + " : " + myWebDictionary.xpathReturn(myPath));
+            System.out.print("\nError - Web (getElement) - no element : " + myPath + " : " + theWebDictionary.xpathReturn(myPath));
             return null;
         }
     }

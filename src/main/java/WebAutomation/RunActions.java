@@ -8,13 +8,12 @@ import org.openqa.selenium.WebDriver;
  */
 public class RunActions {
 
-    public static void runSelectCases (int[] myTestArray,String mySuiteName) {
-        WebActions myWebActions = new WebActions();
-        DataActions myDataActions = new DataActions();
-        DataBuilder myDataBuilder = new DataBuilder();
-
+    public static void runSelectCases (int[] myTestArray,String mySuiteGroupName, String mySuiteFileName) {
+        DataBuilder myDataBuilder = new DataBuilder(mySuiteGroupName,mySuiteFileName);
+        TestListDataClass myTestGroup = myDataBuilder.theTestListDataClass;
+        DataActions myDataActions = new DataActions(myDataBuilder);
+        WebActions myWebActions = new WebActions(myDataBuilder);
         WebDriver driver = myWebActions.getWebDriver();
-        TestListDataClass myTestGroup = myDataBuilder.mapForJSONObject(myDataBuilder.myUSRDirectory(mySuiteName));
 
         if (myTestGroup != null) {
             int myCompleteTestCaseCount = myTestGroup.testCases.length;
@@ -40,13 +39,13 @@ public class RunActions {
         }
     }
 
-    public static void runAllCases(String mySuite) {
-        WebActions myWebActions = new WebActions();
-        DataActions myDataActions = new DataActions();
-        DataBuilder myDataBuilder = new DataBuilder();
+    public static void runAllCases(String mySuiteGroupName, String mySuiteFileName) {
+        DataBuilder myDataBuilder = new DataBuilder(mySuiteGroupName,mySuiteFileName);
+        TestListDataClass myTestGroup = myDataBuilder.theTestListDataClass;
 
+        WebActions myWebActions = new WebActions(myDataBuilder);
+        DataActions myDataActions = new DataActions(myDataBuilder);
         WebDriver driver = myWebActions.getWebDriver();
-        TestListDataClass myTestGroup = myDataBuilder.mapForJSONObject(myDataBuilder.myUSRDirectory(mySuite));
 
         if (myTestGroup != null) {
             int myCompleteTestCaseCount = myTestGroup.testCases.length;

@@ -1,7 +1,6 @@
 
 import TestReporter.TestEventClass;
 import WebAutomation.*;
-import WebData.WebDictionary;
 import org.openqa.selenium.WebDriver;
 import org.json.simple.JSONObject;
 
@@ -19,44 +18,28 @@ public class Main  {
         //System.out.print(myErrorEventClass.myTestString);
 
         //runSpecific();
-        TESTPath();
+        runAll();
+        //TESTPath();
 
         System.out.print("\nMain Run Finish\n");
     }
 
     public static void runSpecific () {
-        int[] myCaseArray = {0};
+        int[] myCaseArray = {1};
         String mySuite = "Core";
-        myRunActions.runSelectCases(myCaseArray,mySuite);
+        String myFileName = "Core";
+        myRunActions.runSelectCases(myCaseArray,mySuite,myFileName);
     }
 
     public static void runAll () {
         String mySuite = "Core";
-        myRunActions.runAllCases(mySuite);
+        String myFileName = "Core";
+        myRunActions.runAllCases(mySuite,myFileName);
     }
 
     //
     ////
     //
-
-    public static void TESTPath() {
-        WebActions myWebActions = new WebActions();
-        DataActions myDataActions = new DataActions();
-        DataBuilder myDataBuilder = new DataBuilder();
-        TestListDataClass myTestGroup = myDataBuilder.mapForJSONObject(myDataBuilder.myUSRDirectory("Core"));
-    }
-
-
-
-    //
-    ////
-    //
-
-    ////div[@id='bigCalendar']/table/tbody/tr["+s+"]/td["+t+"]/div[2]/a/span[2]
-    //Arrays.asList(myTestArray).contains(1)
-
-
-
 
 
 
@@ -72,12 +55,11 @@ public class Main  {
 
 
     public static void TESTmyRunKit () {
-        WebActions myWebActions = new WebActions();
-        DataActions myDataActions = new DataActions();
-        DataBuilder myDataBuilder = new DataBuilder();
-
+        DataBuilder myDataBuilder = new DataBuilder("Core","Core");
+        TestListDataClass myTestGroup = myDataBuilder.theTestListDataClass;
+        DataActions myDataActions = new DataActions(myDataBuilder);
+        WebActions myWebActions = new WebActions(myDataBuilder);
         WebDriver driver = myWebActions.getWebDriver();
-        TestListDataClass myTestGroup = myDataBuilder.mapForJSONObject(myDataBuilder.myUSRDirectory("Core"));
 
         int myTestNumber;
         JSONObject myTestObject;
@@ -91,16 +73,22 @@ public class Main  {
         //myDataActions.testSelectedAction(myTestObject, driver);
     }
 
-// MAKE A DICTIONARY LIST CHECKER
-    public static void TESTDictionary () {
-        WebDictionary myWebDictionary = new WebDictionary();
-        //myWebDictionary.loadDictionary();
-        String myString = myWebDictionary.xpathReturn("home_signup");
-        System.out.print("\n");
-        String myNewString = myWebDictionary.xpathReturn("home_login");
-        System.out.print("\n");
-        System.out.print(myString);
+    public static void TESTPath() {
+        DataBuilder myDataBuilder = new DataBuilder("Core","Core");
+        TestListDataClass myTestGroup = myDataBuilder.theTestListDataClass;
+        DataActions myDataActions = new DataActions(myDataBuilder);
+        WebActions myWebActions = new WebActions(myDataBuilder);
     }
+
+
+
+// MAKE A DICTIONARY LIST CHECKER
+////div[@id='bigCalendar']/table/tbody/tr["+s+"]/td["+t+"]/div[2]/a/span[2]
+//Arrays.asList(myTestArray).contains(1)
+
+
+
+
 
 }
 

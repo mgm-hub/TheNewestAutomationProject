@@ -6,9 +6,14 @@ import org.openqa.selenium.WebElement;
 
 public class DataActions {
 
-    final static WebActions myWebActions = new WebActions();
-    final static DataBuilder myDataBuilder = new DataBuilder();
+    static WebActions myWebActions;
+    static DataBuilder theDataBuilder;
     final static String DICTIONARY_KEY_URL = "baseURL";
+
+    public DataActions(DataBuilder myDataBuilder) {
+        theDataBuilder = myDataBuilder;
+        myWebActions = new WebActions(myDataBuilder);
+    }
 
     //
     ////
@@ -19,7 +24,7 @@ public class DataActions {
         String baseURL = (String) myObject.get(DICTIONARY_KEY_URL);
         driver.get(baseURL);
         //path array builder
-        PathDataClass[] myPathArray = myDataBuilder.pathDataReturn(myObject);
+        PathDataClass[] myPathArray = theDataBuilder.pathDataReturn(myObject);
         //run test
         mainTestRunAction(driver, myPathArray);
     }
