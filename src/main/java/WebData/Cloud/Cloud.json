@@ -1,11 +1,12 @@
 {
   "testSuiteList": {
-    "testgenre": "core",
+    "testgenre": "cloud",
     "pathDictionary" : [
       {
         "cloud_login_link": "//i[@class='fa fa-user']",
         "cloud_user_name": "//input[@id='SignInUserName']",
-        "cloud_login_button": "//input[@value='Login']"
+        "cloud_login_button": "//input[@value='Login']",
+        "main_login_user_password": "//input[@id='SignInPassword']"
       }
     ],
     "testSuite": [

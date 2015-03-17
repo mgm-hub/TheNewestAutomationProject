@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by mmoscatello on 3/16/2015.
  */
+
 public class RunActions {
 
     public static void runSelectCases (int[] myTestArray,String mySuiteGroupName, String mySuiteFileName) {
@@ -42,9 +43,8 @@ public class RunActions {
     public static void runAllCases(String mySuiteGroupName, String mySuiteFileName) {
         DataBuilder myDataBuilder = new DataBuilder(mySuiteGroupName,mySuiteFileName);
         TestListDataClass myTestGroup = myDataBuilder.theTestListDataClass;
-
-        WebActions myWebActions = new WebActions(myDataBuilder);
         DataActions myDataActions = new DataActions(myDataBuilder);
+        WebActions myWebActions = new WebActions(myDataBuilder);
         WebDriver driver = myWebActions.getWebDriver();
 
         if (myTestGroup != null) {

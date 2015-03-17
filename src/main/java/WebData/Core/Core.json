@@ -22,24 +22,8 @@
       }
     ],
     "testSuite": [
-      {
+        {
         "testID": "00",
-        "baseURL" : "http://ferret.ltibooking.com/",
-        "description" : "login",
-        "pathList": [
-          {
-            "0": ["click","cloud_login_link"],
-            "1": ["click", "cloud_user_name"],
-            "2": ["writePRE","milkaa"],
-            "3": ["wait","1000"],
-            "4": ["click","main_login_user_password"],
-            "5": ["writePRE","tomato"],
-            "6": ["finished","test 01"]
-          }
-        ]
-      },
-      {
-        "testID": "01",
         "baseURL" : "http://www.liftopia.com/",
         "description" : "practice",
         "pathList": [
@@ -60,7 +44,7 @@
         ]
       },
       {
-        "testID": "02",
+        "testID": "01",
         "baseURL" : "http://www.liftopia.com/",
         "description" : "practice",
         "pathList": [
@@ -74,10 +58,9 @@
             "6": ["click", "main_login_signin_button"],
             "7": ["wait","1000"],
             "8": ["find","main_login_alert"],
-            "9": ["compareTextPRE","Whoops! Your email and password don't match!!!!!!!sdfdsfd."],
+            "9": ["compareTextPRE","Whoops! Your email and password don't match."],
             "10": ["wait","1000"],
-            "11": ["finished","test 01"],
-            "12": ["closebrowser", "closebrowser"]
+            "11": ["finished","test 01"]
           }
         ]
       }

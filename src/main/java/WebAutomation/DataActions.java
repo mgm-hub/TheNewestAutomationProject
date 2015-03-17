@@ -8,6 +8,7 @@ public class DataActions {
 
     static WebActions myWebActions;
     static DataBuilder theDataBuilder;
+    static DataPathActions myDataMapper = new DataPathActions();
     final static String DICTIONARY_KEY_URL = "baseURL";
 
     public DataActions(DataBuilder myDataBuilder) {
@@ -19,12 +20,12 @@ public class DataActions {
     ////
     //
 
-    // 5.0 test choice
+    // 4.0 test choice - ACTION-IN
     public static void testSelectedAction (JSONObject myObject, WebDriver driver) {
         String baseURL = (String) myObject.get(DICTIONARY_KEY_URL);
         driver.get(baseURL);
         //path array builder
-        PathDataClass[] myPathArray = theDataBuilder.pathDataReturn(myObject);
+        PathDataClass[] myPathArray = myDataMapper.pathDataReturn(myObject);
         //run test
         mainTestRunAction(driver, myPathArray);
     }
@@ -33,8 +34,23 @@ public class DataActions {
     ////
     //
 
-    //4.1
-    public static int pathChoiceAction (PathDataClass path, int myCount, WebDriver driver, PathDataClass[] myPathArray) {
+    //4.1 automation action
+    private static void mainTestRunAction(WebDriver driver, PathDataClass[] myPathArray) {
+        int myLength = myPathArray.length;
+        if (myLength > 0 && driver != null) {
+            int myCount = 0;
+            for (PathDataClass path : myPathArray) {
+                myCount = pathChoiceAction(path, myCount, driver, myPathArray);
+            }
+        }
+    }
+
+    //
+    ////
+    //
+
+    //4.2
+    private static int pathChoiceAction (PathDataClass path, int myCount, WebDriver driver, PathDataClass[] myPathArray) {
         if (path.command.equals("click")){ //case 1
             myWebActions.findAndClickElement(path.path, driver);
         }
@@ -98,15 +114,6 @@ public class DataActions {
         return  myCount;
     }
 
-    //4.0 automation action
-    public static void mainTestRunAction(WebDriver driver, PathDataClass[] myPathArray) {
-        int myLength = myPathArray.length;
-        if (myLength > 0 && driver != null) {
-            int myCount = 0;
-            for (PathDataClass path : myPathArray) {
-                myCount = pathChoiceAction(path, myCount, driver, myPathArray);
-            }
-        }
-    }
+
 
 }

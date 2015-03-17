@@ -12,7 +12,6 @@ public class WebActions {
     static DataBuilder theDataBuilder;
 
     public WebActions(DataBuilder myDataBuilder) {
-        System.out.print("\nInit - Web Actions");
         theDataBuilder = myDataBuilder;
         theWebDictionary = new WebDictionary(myDataBuilder.theJSONDictionaryData);
     }
