@@ -1,0 +1,50 @@
+{
+  "testSuiteList": {
+    "testgenre": "core",
+    "pathDictionary" : [
+      {
+        "cloud_login_link": "//i[@class='fa fa-user']",
+        "cloud_user_name": "//input[@id='SignInUserName']",
+        "cloud_login_button": "//input[@value='Login']"
+      }
+    ],
+    "testSuite": [
+      {
+        "testID": "00",
+        "baseURL" : "http://ferret.ltibooking.com/",
+        "description" : "login",
+        "pathList": [
+          {
+            "0": ["click","cloud_login_link"],
+            "1": ["click", "cloud_user_name"],
+            "2": ["writePRE","milkaa"],
+            "3": ["wait","1000"],
+            "4": ["click","main_login_user_password"],
+            "5": ["writePRE","tomato"],
+            "6": ["finished","test 01"]
+          }
+        ]
+      },
+      {
+        "testID": "01",
+        "baseURL" : "http://ferret.ltibooking.com/",
+        "description" : "login",
+        "pathList": [
+          {
+            "0": ["click","cloud_login_link"],
+            "1": ["click", "cloud_user_name"],
+            "2": ["writePRE","milkaa"],
+            "3": ["wait","1000"],
+            "4": ["click","main_login_user_password"],
+            "5": ["writePRE","tomato"],
+            "6": ["finished","test 01"]
+          }
+        ]
+      }
+    ]
+  }
+}
+
+
+
+

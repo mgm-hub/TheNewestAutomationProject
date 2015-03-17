@@ -1,7 +1,7 @@
 {
   "testSuiteList": {
     "testgenre": "core",
-    "testDictionary" : [
+    "pathDictionary" : [
       {
         "home_login_link": "//a[contains(.,'Login')]",
         "home_signup": "//a[contains(.,'Sign Up')]",
@@ -18,10 +18,7 @@
         "main_login_user_email": "//input[@id='SignInUserName']",
         "main_login_user_password": "//input[@id='SignInPassword']",
         "main_login_signin_button": "//input[@value='Sign In']",
-        "main_login_alert": "//div[contains(@class,'alert-error')]",
-        "cloud_login_link": "//i[@class='fa fa-user']",
-        "cloud_user_name": "//input[@id='SignInUserName']",
-        "cloud_login_button": "//input[@value='Login']"
+        "main_login_alert": "//div[contains(@class,'alert-error')]"
       }
     ],
     "testSuite": [

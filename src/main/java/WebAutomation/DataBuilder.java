@@ -14,7 +14,7 @@ public class DataBuilder {
     final static String DICTIONARY_KEY_01 = "testSuiteList";
     final static String DICTIONARY_KEY_02 = "testSuite";
     final static String DICTIONARY_KEY_PATHLIST = "pathList";
-    final static String DICTIONARY_KEY_DICTIONARY = "testDictionary";
+    final static String DICTIONARY_KEY_DICTIONARY = "pathDictionary";
 
     public static  Map<String, String>  theJSONDictionaryData;
     public static String theSuiteGroupName;
@@ -32,6 +32,9 @@ public class DataBuilder {
         theTestListDataClass = mapForJSONObject(theUSRDirectory);
 
     }
+
+
+
 
     //3.2
     public static PathDataClass[] pathDataReturn (JSONObject myObject) {
@@ -80,6 +83,11 @@ public class DataBuilder {
         }
     }
 
+
+
+
+
+    
     //
     ////
     //
@@ -122,7 +130,7 @@ public class DataBuilder {
 
     // 1.1 - json mapper
     public static TestListDataClass objectListFromJSONBuilder(JSONObject myJSONOobject){
-    JSONObject myTestSuiteFile;
+        JSONObject myTestSuiteFile;
         JSONArray myTestSuiteList;
 
         myTestSuiteFile = (JSONObject) myJSONOobject.get(DICTIONARY_KEY_01);
@@ -133,14 +141,14 @@ public class DataBuilder {
 
             //load in dictionary!!!!
             JSONArray myTestSuiteDictionary = (JSONArray) myTestSuiteFile.get(DICTIONARY_KEY_DICTIONARY);
-           if (myTestSuiteDictionary.size() > 0) { // Build Dictionary
-               JSONObject myObject = (JSONObject) myTestSuiteDictionary.get(0);
-               theJSONDictionaryData = newDictionaryBuilder(myObject);
-           }
-        } else {
-            System.out.print("\nError - testSuiteList dictionary error");
-            myTestSuiteList = null;
-        }
+            if (myTestSuiteDictionary.size() > 0) { // Build Dictionary
+                JSONObject myObject = (JSONObject) myTestSuiteDictionary.get(0);
+                theJSONDictionaryData = newDictionaryBuilder(myObject);
+            }
+            } else {
+                System.out.print("\nError - testSuiteList dictionary error");
+                myTestSuiteList = null;
+            }
 
         int myNumberOfTests = myTestSuiteList.size();
 
