@@ -1,26 +1,6 @@
 {
   "testSuiteList": {
     "testgenre": "core",
-    "pathDictionary" : [
-      {
-        "home_login_link": "//a[contains(.,'Login')]",
-        "home_signup": "//a[contains(.,'Sign Up')]",
-        "home_contact": "//a[contains(.,'Contact')]",
-        "home_help": "//a[contains(@href,'http://liftopia.zendesk.com/forums')]",
-        "home_chat": "//a[contains(.,'Chat')]",
-        "home_callus": "//a[contains(.,'Call us! (800) 349-0870')]",
-        "home_company": "//a[contains(.,'Company')]",
-        "home_platform": "//a[contains(.,'Platform')]",
-        "home_team": "//a[contains(.,'Team')]",
-        "home_career": "//a[contains(.,'Careers')]",
-        "home_press": "//a[contains(.,'Press')]",
-        "home_blog": "//a[contains(.,'Blog')]",
-        "main_login_user_email": "//input[@id='SignInUserName']",
-        "main_login_user_password": "//input[@id='SignInPassword']",
-        "main_login_signin_button": "//input[@value='Sign In']",
-        "main_login_alert": "//div[contains(@class,'alert-error')]"
-      }
-    ],
     "testSuite": [
         {
         "testID": "00",

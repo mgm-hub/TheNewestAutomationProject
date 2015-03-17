@@ -13,7 +13,6 @@ public class DataBuilder {
 
     final static String DICTIONARY_KEY_01 = "testSuiteList";
     final static String DICTIONARY_KEY_02 = "testSuite";
-    final static String DICTIONARY_KEY_DICTIONARY = "pathDictionary";
 
     public static Map <String, String> theJSONDictionaryData;
     public static String theSuiteGroupName;
@@ -30,6 +29,9 @@ public class DataBuilder {
         System.out.print(initStatement);
         theUSRDirectory = myUSRDirectory(mySuiteGroupName,mySuiteFileName);
         mapForJSONObject(theUSRDirectory);
+
+        DictionaryDataBuilder myDictionaryDataBuilder = new DictionaryDataBuilder(theSuiteGroupName);
+        theJSONDictionaryData = myDictionaryDataBuilder.theJSONDictionaryData;
     }
 
     //
@@ -80,17 +82,6 @@ public class DataBuilder {
             //load in testsuites!!!!
             JSONArray myTestSuiteList = (JSONArray) myTestSuiteFile.get(DICTIONARY_KEY_02);
             testListDataSetter(myTestSuiteList); //sets test list here
-
-            //load in dictionary!!!!
-            JSONArray myTestSuiteDictionary = (JSONArray) myTestSuiteFile.get(DICTIONARY_KEY_DICTIONARY);
-            if (myTestSuiteDictionary.size() > 0) { // Build Dictionary
-                JSONObject myObject = (JSONObject) myTestSuiteDictionary.get(0);
-                newDictionarySetter(myObject); //sets dictionary here
-            }
-            else {
-                String errorMessage = "\nError - Databuilder (objectListFromJSONBuilder) - dictionary empty";
-                System.out.print(errorMessage);
-            }
         } else {
             String errorMessage = "\nError - Databuilder (objectListFromJSONBuilder) - testSuiteList dictionary error";
             System.out.print(errorMessage);
@@ -130,29 +121,6 @@ public class DataBuilder {
     }
 
 
-    //1.4 dictionary writer
-    private static  void  newDictionarySetter (JSONObject myObject ){
-        Collection myCollectionValues = myObject.values();
-        Collection myCollectionKeys = myObject.keySet();
-
-        Object[] mValueyArray = myCollectionValues.toArray();
-        Object[] myKeyArray = myCollectionKeys.toArray();
-
-        Map<String, String> myDictionary = new HashMap<String, String>();
-
-        for(int i = 0; i< myKeyArray.length; i++) {
-            String myKey = (String) myKeyArray[i];
-            String myValue = (String) mValueyArray[i];
-            myDictionary.put(myKey,myValue);
-        }
-        if (myDictionary.size() >0){
-            theJSONDictionaryData = myDictionary;
-        }
-        else {
-            String errorMessage = "\nError - Databuilder (newDictionaryBuilder) - dictionary size error";
-            System.out.print(errorMessage);
-        }
-    }
 
     //
     ////
